@@ -40,11 +40,11 @@ class Fun(commands.Cog):
                 tails += 1
 
         if heads > tails:
-            winner = f"Heads Wins!\nHeads: {heads}\nTails: {tails}"
+            winner += f"Heads Wins!\nHeads: {heads}\nTails: {tails}"
         elif heads < tails:
-            winner = f"Tails Wins!\nHeads: {heads}\nTails: {tails}"
+            winner += f"Tails Wins!\nHeads: {heads}\nTails: {tails}"
         else:
-            winner = f"Its a tie!\nHeads: {heads}\nTails: {tails}"
+            winner += f"Its a tie!\nHeads: {heads}\nTails: {tails}"
 
         await display_embed(ctx, "Coin Flip", winner)
 
