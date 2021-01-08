@@ -48,6 +48,37 @@ class Fun(commands.Cog):
 
         await display_embed(ctx, "Coin Flip", winner)
 
+    @commands.command(aliases=["r6"])
+    async def roll6(self, ctx, rolls=1):
+        roll_total = 0
+        all_rolls = ""
+
+        if rolls > 10:
+            rolls = 10
+
+        for x in range(rolls):
+            temp = random.randrange(1, 7)
+            all_rolls += f"{str(temp)} "
+            roll_total += temp
+        await display_embed(ctx, "Rolling 6's", f"Total: {roll_total}\n{all_rolls}")
+
+
+    @commands.command(aliases=["r"])
+    async def roll(self, ctx, rolls=1, roll_type=6):
+        roll_total = 0
+        all_rolls = ""
+
+        if rolls > 10:
+            rolls = 10
+
+        for x in range(rolls):
+            temp = random.randrange(1, (roll_type+1))
+            all_rolls += f"{str(temp)} "
+            roll_total += temp
+        await display_embed(ctx, "Rolling Dice", f"Total: {roll_total}\n{all_rolls}")
+
+
+
 
 def setup(client):
     client.add_cog(Fun(client))
