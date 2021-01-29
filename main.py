@@ -108,13 +108,26 @@ async def test(ctx):
 
 # Embed
 @client.command()
-async def display_embed(ctx, title, description):
+async def display_embed(ctx, title, description, is_tts=False):
     embed = discord.Embed(
         title=title,
         description=description,
         colour=discord.Colour.green()
     )
+    if is_tts:
+        tts = title + " " + description
+        await ctx.send(tts, embed=embed, tts=is_tts)
+    else:
+        await ctx.send(embed=embed, tts=is_tts)
 
+
+@client.command()
+async def img_embed(ctx, img="", title="", description=""):
+    embed = discord.Embed(
+        title=title,
+        description=description
+    )
+    embed.set_image(url=img)
     await ctx.send(embed=embed)
 
 

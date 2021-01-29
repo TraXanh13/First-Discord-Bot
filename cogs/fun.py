@@ -1,7 +1,7 @@
 # import discord
 import random
 from discord.ext import commands
-from main import display_embed
+from main import display_embed, img_embed
 
 
 class Fun(commands.Cog):
@@ -14,6 +14,21 @@ class Fun(commands.Cog):
         response = ["Good", "Feels bad lmao", "kek", "Oof", "Sucks to suck", "R U HAVE DUMB?"]
         await display_embed(ctx, "You sad?", (random.choice(response)))
 
+    @commands.command(aliases=["suicide", "endMe"])
+    async def kill_self(self, ctx):
+        response = ["Do Monki Flip", "Jump off a bridge -Yaseen"]
+        res = random.choice(response)
+        if "Monki" not in res:
+            await display_embed(ctx, "You want dead?", res)
+        else:
+            await img_embed(ctx, "You want dead?", res, "https://media1.tenor.com/images"
+                                                        "/f9393148519c3eeb55b3a89bf650b538/tenor.gif?itemid=18149595")
+
+    @commands.command(aliases=["mf"])
+    async def monki_flip(self, ctx):
+        await img_embed(ctx, "https://media1.tenor.com/images/f9393148519c3eeb55b3a89bf650b538/tenor.gif?itemid"
+                             "=18149595", "MONKI FLIP 🐵🐵🐵")
+
     @commands.command(aliases=["8ball"])
     async def eightball(self, ctx, *, question):
         response = ["As I see it, yes", "Ask again later", "Better not tell you now", "Cannot predict now",
@@ -22,6 +37,21 @@ class Fun(commands.Cog):
                     "Reply hazy try again", "Signs point to yes", "Very doubtful", "Without a doubt", "Yes",
                     "Yes, definitely", "You may rely on it"]
         await display_embed(ctx, "The Magic 8 Ball", f"Question: {question}\nResponse: {random.choice(response)}")
+
+    @commands.command(aliases=["mq"])
+    async def mo_quote(self, ctx, is_tts=False):
+        response = ["Rape builds character", "I'm a secret Al-Qaeda agent", "Yo, I'm down for a finger in the bum",
+                    "I give him the Samsung spin sloppy toppy bang me upside down [missed some stuff] cycle swirly "
+                    "twirly",
+                    "9-11 is a national holiday", "I've never wanted to shoot up people as much as i want now",
+                    "Imma beat that little girl up", "Racism is in my blood", "Blacks don't crack",
+                    "I don't understand the black panther movie. Its just black people on a screen",
+                    "Is it time to fuck a horse?", "I'd rather die my own way fucking children",
+                    "suck a dick. suck a dick, swallow it whole, swallow it whole, beat a bitch, beat a bitch",
+                    "Cum cum cum cum cum cum cum cum cum cum cum cum cum cum cum cum. Why didn't you guys cum?",
+                    "I definitely fucked your cats", "Want me to jack off to girls in front of you?",
+                    "She's in my shit", "I would sit on all of your faces", "He can jerk me off at mach 2 speed"]
+        await display_embed(ctx, "Famous Out of Context Quotes From Mo", (random.choice(response)), is_tts)
 
     @commands.command()
     async def flip(self, ctx, flips=1):
@@ -48,23 +78,8 @@ class Fun(commands.Cog):
 
         await display_embed(ctx, "Coin Flip", winner)
 
-    @commands.command(aliases=["r6"])
-    async def roll6(self, ctx, rolls=1):
-        roll_total = 0
-        all_rolls = ""
-
-        if rolls > 10:
-            rolls = 10
-
-        for x in range(rolls):
-            temp = random.randrange(1, 7)
-            all_rolls += f"{str(temp)} "
-            roll_total += temp
-        await display_embed(ctx, "Rolling 6's", f"Total: {roll_total}\n{all_rolls}")
-
-
     @commands.command(aliases=["r"])
-    async def roll(self, ctx, rolls=1, roll_type=6):
+    async def roll(self, ctx, rolls=1, roll_type=6, is_tts=False):
         roll_total = 0
         all_rolls = ""
 
@@ -72,12 +87,10 @@ class Fun(commands.Cog):
             rolls = 10
 
         for x in range(rolls):
-            temp = random.randrange(1, (roll_type+1))
+            temp = random.randrange(1, (roll_type + 1))
             all_rolls += f"{str(temp)} "
             roll_total += temp
-        await display_embed(ctx, "Rolling Dice", f"Total: {roll_total}\n{all_rolls}")
-
-
+        await display_embed(ctx, "Rolling Dice", f"Total: {roll_total}\n{all_rolls}", is_tts)
 
 
 def setup(client):
