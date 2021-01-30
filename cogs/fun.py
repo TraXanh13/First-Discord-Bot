@@ -50,7 +50,8 @@ class Fun(commands.Cog):
                     "suck a dick. suck a dick, swallow it whole, swallow it whole, beat a bitch, beat a bitch",
                     "Cum cum cum cum cum cum cum cum cum cum cum cum cum cum cum cum. Why didn't you guys cum?",
                     "I definitely fucked your cats", "Want me to jack off to girls in front of you?",
-                    "She's in my shit", "I would sit on all of your faces", "He can jerk me off at mach 2 speed"]
+                    "She's in my shit", "I would sit on all of your faces", "He can jerk me off at mach 2 speed",
+                    "Sometimes I just want to beat your ass, with my dick"]
         await display_embed(ctx, "Famous Out of Context Quotes From Mo", (random.choice(response)), is_tts)
 
     @commands.command()
