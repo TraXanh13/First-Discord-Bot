@@ -20,11 +20,12 @@ class Points(commands.Cog):
         with open("./text/points.json", 'r') as f:
             point_list = json.load(f)
 
-        if member.mention in point_list:
-            temp = int(point_list[str(member.mention)])
-            point_list[str(member.mention)] = str(temp + points)
+        member_id = member.mention.replace('!', '')
+        if member_id in point_list:
+            temp = int(point_list[member_id])
+            point_list[member_id] = str(temp + points)
         else:
-            point_list[str(member.mention)] = str(points)
+            point_list[member_id] = str(points)
 
         with open("./text/points.json", 'w') as f:
             json.dump(point_list, f, indent=4)
@@ -37,15 +38,16 @@ class Points(commands.Cog):
         with open("./text/points.json", 'r') as f:
             point_list = json.load(f)
 
-        if member.mention not in point_list:
+        member_id = member.mention.replace('!', '')
+        if member_id not in point_list:
             await display_embed(ctx, "Points Taken", f"{member.display_name} isn't on the list")
             return
 
-        temp = int(point_list[str(member.mention)])
+        temp = int(point_list[member_id])
         if temp < points:
-            point_list[str(member.mention)] = "0"
+            point_list[member_id] = "0"
         else:
-            point_list[str(member.mention)] = str(temp-points)
+            point_list[member_id] = str(temp-points)
 
         with open("./text/points.json", 'w') as f:
             json.dump(point_list, f, indent=4)
