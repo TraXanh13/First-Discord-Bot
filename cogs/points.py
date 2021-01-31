@@ -8,6 +8,14 @@ from main import display_embed
 def user_check(ctx):
     return ctx.author.id == 167416077322682368
 
+# Method to replace multiple chars in a string
+def replace_multiple(text, chars_to_replace, replacement):
+    for c in chars_to_replace:
+        if c in text:
+            text = text.replace(c, replacement)
+
+    return text
+
 
 class Points(commands.Cog):
 
@@ -60,8 +68,9 @@ class Points(commands.Cog):
         with open("./text/points.json", 'r') as f:
             lines = f.readlines()
 
+
         for i in lines:
-            temp += i
+            temp += replace_multiple(i, ['{', '"', ',', '}'], '')
 
         await display_embed(ctx, "Points List", temp)
 
