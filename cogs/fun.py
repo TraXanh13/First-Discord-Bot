@@ -21,8 +21,8 @@ class Fun(commands.Cog):
         if "Monki" not in res:
             await display_embed(ctx, "You want dead?", res)
         else:
-            await img_embed(ctx, "You want dead?", res, "https://media1.tenor.com/images"
-                                                        "/f9393148519c3eeb55b3a89bf650b538/tenor.gif?itemid=18149595")
+            await img_embed(ctx, "https://media1.tenor.com/images/f9393148519c3eeb55b3a89bf650b538/tenor.gif?itemid="
+                                 "18149595", "You want dead?", res)
 
     @commands.command(aliases=["mf"])
     async def monki_flip(self, ctx):

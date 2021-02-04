@@ -6,7 +6,7 @@ from main import display_embed
 
 # Specific user permission check
 def user_check(ctx):
-    return ctx.author.id == 167416077322682368
+    return ctx.author.id == 645987661051592735
 
 # Method to replace multiple chars in a string
 def replace_multiple(text, chars_to_replace, replacement):
