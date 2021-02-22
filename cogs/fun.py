@@ -29,9 +29,9 @@ class Fun(commands.Cog):
         await img_embed(ctx, "https://media1.tenor.com/images/f9393148519c3eeb55b3a89bf650b538/tenor.gif?itemid"
                              "=18149595", "MONKI FLIP 🐵🐵🐵")
 
-    @commands.command()
-    async def panda(self, ctx):
-        await img_embed(ctx, "https://media3.giphy.com/media/EatwJZRUIv41G/200.gif", "Panda! 🐼🐼🐼")
+    @commands.command(aliases=["mm"])
+    async def mole(self, ctx):
+        await img_embed(ctx, "https://i.imgur.com/gpYbeWz.gif")
 
     @commands.command()
     async def cry(self, ctx):
