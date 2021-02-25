@@ -95,17 +95,6 @@ async def reload(ctx, extension):
     print(f"{ctx.author} reloaded {extension}")
 
 
-# Specific user permission check
-def user_check(ctx):
-    return ctx.author.id == 197757126611959808
-
-
-@client.command()
-@commands.check(user_check)
-async def test(ctx):
-    await ctx.send(f"This is a special case for {ctx.author}")
-
-
 # Embed
 @client.command()
 async def display_embed(ctx, title, description, is_tts=False):
