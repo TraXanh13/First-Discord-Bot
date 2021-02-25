@@ -1,20 +1,29 @@
 import discord
 import json
 from discord.ext import commands
-from main import display_embed
+from main import displayEmbed
 
 
 # Specific user permission check
-def user_check(ctx):
+def userCheck(ctx):
     return ctx.author.id == 645987661051592735
 
+
 # Method to replace multiple chars in a string
-def replace_multiple(text, chars_to_replace, replacement):
-    for c in chars_to_replace:
+# text: the string that we are looking through
+# charsToReplace: the characters you are looking for
+# replacement: the characters you will replace it with
+def replaceMultiple(text, charsToReplace, replacement):
+    for c in charsToReplace:
         if c in text:
             text = text.replace(c, replacement)
 
     return text
+
+
+"""
+All the stuff to keep track of points for the club server
+"""
 
 
 class Points(commands.Cog):
@@ -22,57 +31,76 @@ class Points(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    # Gives point(s) to a specified user
+    # Needs to be specific user(s) to use command
+    # member: the member that is getting point(s)
+    # points: the number of points given to the member. Default set to 1 point
     @commands.command()
-    @commands.check(user_check)
-    async def give_points(self, ctx, member: discord.Member, points=1):
+    @commands.check(userCheck)
+    async def givePoints(self, ctx, member: discord.Member, points=1):
+        # open and reads the json file with all the points
         with open("./text/points.json", 'r') as f:
             point_list = json.load(f)
 
+        # replaces the '!' in the user ID
         member_id = member.mention.replace('!', '')
+        # if the mentioned member is already in the file
         if member_id in point_list:
             temp = int(point_list[member_id])
             point_list[member_id] = str(temp + points)
         else:
             point_list[member_id] = str(points)
 
+        # open and write into the json file
         with open("./text/points.json", 'w') as f:
             json.dump(point_list, f, indent=4)
 
-        await display_embed(ctx, "Points Awarded", f"{points} awarded to {member.display_name}")
+        await displayEmbed(ctx, "Points Awarded", f"{points} awarded to {member.display_name}")
 
+    # Takes point(s) to a specified user
+    # Needs to be specific user(s) to use command
+    # member: the member that is losing point(s)
+    # points: the number of points taken from the member. Default set to 1 point
     @commands.command()
-    @commands.check(user_check)
-    async def take_points(self, ctx, member: discord.Member, points=1):
+    @commands.check(userCheck)
+    async def takePoints(self, ctx, member: discord.Member, points=1):
+        # open and reads the json file with all the points
         with open("./text/points.json", 'r') as f:
             point_list = json.load(f)
 
+        # replaces the '!' in the user ID
         member_id = member.mention.replace('!', '')
+        # if the mentioned member is not in the file
         if member_id not in point_list:
-            await display_embed(ctx, "Points Taken", f"{member.display_name} isn't on the list")
+            await displayEmbed(ctx, "Points Taken", f"{member.display_name} isn't on the list")
             return
 
         temp = int(point_list[member_id])
         if temp < points:
             point_list[member_id] = "0"
         else:
-            point_list[member_id] = str(temp-points)
+            point_list[member_id] = str(temp - points)
 
+        # open and write into the json file
         with open("./text/points.json", 'w') as f:
             json.dump(point_list, f, indent=4)
 
-        await display_embed(ctx, "Points Taken", f"{points} taken from {member.display_name}")
+        await displayEmbed(ctx, "Points Taken", f"{points} taken from {member.display_name}")
 
+    # Display all the users and their points in the file
     @commands.command()
-    async def show_points(self, ctx):
+    async def showPoints(self, ctx):
         temp = ""
+        # open and reads the json file with all the points
         with open("./text/points.json", 'r') as f:
             lines = f.readlines()
 
-
+        # Loops through each line of the file
         for i in lines:
-            temp += replace_multiple(i, ['{', '"', ',', '}'], '')
+            # Removes any of the specified characters
+            temp += replaceMultiple(i, ['{', '"', ',', '}'], '')
 
-        await display_embed(ctx, "Points List", temp)
+        await displayEmbed(ctx, "Points List", temp)
 
 
 def setup(client):
