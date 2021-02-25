@@ -15,7 +15,8 @@ intents = discord.Intents(messages=True, guilds=True, reactions=True, members=Tr
 status = cycle(["you shower", "you sleep", "you fap", "you cry", "you watching me"])
 client = commands.Bot(command_prefix=get_prefix, intents=intents)
 
-"""Client Events"""
+
+""" Client Events """
 
 
 # Set bot status and prints to console when bot is ready to go
@@ -63,7 +64,7 @@ async def change_status():
     await client.change_presence(activity=discord.Activity(type=3, name=next(status)))
 
 
-"""Client Commands"""
+""" Client Commands """
 
 
 # Changes the prefix for the bot
@@ -112,7 +113,7 @@ async def reload(ctx, extension):
     print(f"{ctx.author} reloaded {extension}")
 
 
-"""Embed Messages"""
+""" Embed Messages """
 
 
 # Creates an embedded message with the arguments passed. Text to speech can also be enabled

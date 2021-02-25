@@ -13,6 +13,8 @@ class Fun(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    """ Images and Gifs """
+
     # Sends a gif of monki flip
     @commands.command(aliases=["mf"])
     async def monki_flip(self, ctx):
@@ -29,6 +31,8 @@ class Fun(commands.Cog):
     async def cry(self, ctx):
         await imgEmbed(ctx, "https://i.pinimg.com/originals/3f/c0/35/3fc035bc5d869aaffbba6c659c7a2299.gif",
                        "Sad boy times...")
+
+    """ Text Commands """
 
     # Responds to a yes/no question with a random response
     # *: takes the rest of the text into the question argument
@@ -60,6 +64,7 @@ class Fun(commands.Cog):
                     "Sometimes I just want to beat your ass, with my dick"]
         await displayEmbed(ctx, "Famous Out of Context Quotes From Mo", (random.choice(response)), isTts)
 
+    """ Random Chances """
     # Flips a number of coins (max 10) and sends the number of heads and tails made
     # flips: the number of times we are flipping a coin default to 1
     @commands.command()
@@ -67,7 +72,7 @@ class Fun(commands.Cog):
         heads = 0
         tails = 0
         winner = ""
-        
+
         # cap the number of coins to 10 max
         if flips > 10:
             flips = 10
