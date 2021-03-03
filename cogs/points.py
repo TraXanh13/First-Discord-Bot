@@ -5,8 +5,18 @@ from main import displayEmbed
 
 
 # Specific user permission check
-def userCheck(ctx):
-    return ctx.author.id == 645987661051592735
+# def userCheck(ctx):
+#    return ctx.author.id == 645987661051592735
+
+
+# Checks for a specific role
+def roleCheck(ctx):
+    role = discord.utils.get(ctx.guild.roles, name="AL-MUJADILA")
+    if role in ctx.author.roles:
+        return True
+    else:
+        displayEmbed(ctx, "Points Awarded", "Permission Denied!")
+        return False
 
 
 # Method to replace multiple chars in a string
@@ -36,7 +46,7 @@ class Points(commands.Cog):
     # member: the member that is getting point(s)
     # points: the number of points given to the member. Default set to 1 point
     @commands.command()
-    @commands.check(userCheck)
+    @commands.check(roleCheck)
     async def givePoints(self, ctx, member: discord.Member, points=1):
         # open and reads the json file with all the points
         with open("./text/points.json", 'r') as f:
@@ -62,7 +72,7 @@ class Points(commands.Cog):
     # member: the member that is losing point(s)
     # points: the number of points taken from the member. Default set to 1 point
     @commands.command()
-    @commands.check(userCheck)
+    @commands.check(roleCheck)
     async def takePoints(self, ctx, member: discord.Member, points=1):
         # open and reads the json file with all the points
         with open("./text/points.json", 'r') as f:
