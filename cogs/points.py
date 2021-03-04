@@ -11,12 +11,12 @@ from main import displayEmbed
 
 # Checks for a specific role
 def roleCheck(ctx):
-    role = discord.utils.get(ctx.guild.roles, name="AL-MUJADILA")
+    hasPerm = False
+    role = discord.utils.get(ctx.guild.roles, name="Al-Mujadila")
     if role in ctx.author.roles:
-        return True
-    else:
-        displayEmbed(ctx, "Points Awarded", "Permission Denied!")
-        return False
+        hasPerm = True
+
+    return hasPerm
 
 
 # Method to replace multiple chars in a string
