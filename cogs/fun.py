@@ -26,6 +26,11 @@ class Fun(commands.Cog):
     async def mole(self, ctx):
         await imgEmbed(ctx, "https://i.imgur.com/gpYbeWz.gif")
 
+    # Sends a gif of monty mole smacking his tummy
+    @commands.command(aliases=["afil"])
+    async def afilDance(self, ctx):
+        await imgEmbed(ctx, "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1192ddd2-b4a9-46dd-a462-2303ff2eb4c4/db03cn7-ee4ec2bb-df61-45b4-9596-eba0684a0f77.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMTE5MmRkZDItYjRhOS00NmRkLWE0NjItMjMwM2ZmMmViNGM0XC9kYjAzY243LWVlNGVjMmJiLWRmNjEtNDViNC05NTk2LWViYTA2ODRhMGY3Ny5naWYifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.2-u4A34II8yzpgVp9ao667cS7Vk2qKAIO7JDMg-Oq14")
+
     # Sends a gif of a sad buy
     @commands.command(aliases=["sad"])
     async def cry(self, ctx):

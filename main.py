@@ -13,8 +13,7 @@ def get_prefix(ctx, message):
 
 intents = discord.Intents(messages=True, guilds=True, reactions=True, members=True, presences=True)
 status = cycle(["you shower", "you sleep", "you fap", "you cry", "you watching me"])
-client = commands.Bot(command_prefix=get_prefix, intents=intents)
-
+client = commands.Bot(command_prefix=get_prefix, intents=intents, help_command=None)
 
 """ Client Events """
 
@@ -113,6 +112,11 @@ async def reload(ctx, extension):
     print(f"{ctx.author} reloaded {extension}")
 
 
+@client.command(aliases="help")
+async def help(ctx):
+    await ctx.send("This is the help")
+
+
 """ Embed Messages """
 
 
@@ -148,7 +152,9 @@ async def imgEmbed(ctx, img="", title="", description=""):
     await ctx.send(embed=embed)
 
 
-# Error Handlers
+""" Error Handlers """
+
+
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
